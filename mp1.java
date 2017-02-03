@@ -1,6 +1,7 @@
 /**
  * mp1.java, Machine Problem 1 for CS:2820, Spring 2017
- * @author Sam Eakin
+ * @author Douglas W. Jones
+ * @author Samuel Eakin B4
  * @version 2017-01-20
  */
 class mp1
