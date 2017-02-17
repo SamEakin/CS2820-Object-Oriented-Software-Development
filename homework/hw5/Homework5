@@ -1,0 +1,99 @@
+CS:2820 
+Section B04 
+HomeWork 5
+Sam Eakin
+
+1.a) 
+
+	// class attributes
+	private field f;
+
+	// constructor
+	MyClass(Field p) {
+		if (p == null) {
+			throw new NullPointerException("Null parameter passed to constructor!");
+		}
+		else {
+			f = p;
+		}
+	}
+
+1.b)
+
+	// factory
+	static MyClass factory(Field p) {
+		if (p == null) {
+			throw new NullPointerException("Null parameter passed to constructor!");
+		}
+		else {
+			MyClass m = new MyClass();
+			// bug: null arguments?
+			m.f = p;
+			return m;
+		}
+	}
+
+	// At least with the factory method, we don't even create MyClass object 
+	// if the argument being passed to it is null. 
+	// With a constructor there is no way of avoiding the creating of the object before checking if null.
+
+2.a)
+	
+	While reading in the input lines once determining the type of Gate, an according constructor would be called.
+	A regular Gate constructor would read in the next 4 Strings (name, type, numberOfInputs, delay) from input.
+	A subclass of Gate would only read in 3 Strings (name, type, delay)
+
+2.b)
+	
+	Subclasses might make it easier for creating instances of the objects but if you just called a different constructor of the same object depending on the number of arguments, you could just assign the attributes accordingly without any problems. Therefore, it's not completely necessary to have subclasses.
+
+3.a)
+
+	as more intersections are added we don't want to have to reinitialize an interection object each time a new piece is added. A method for adding an individual road to an intersections list of outgoing roads is important for this.
+	
+
+3.b)
+
+	if (source != null) {
+		outgoing.add(source);
+	}
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
