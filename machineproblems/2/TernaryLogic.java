@@ -38,19 +38,7 @@ class Gate {
 	private float delay;
 
 	// constructor
-	// INPUT FORMAT: gate name type inputs delay
-	// @TODO this needs to be called from within a factory method!
-	public Gate(Scanner sc, LinkedList <Gate> gates) {
-		String inputName = sc.next();
-		String inputType = sc.next();
-		int inputInputs = sc.nextInt();
-		float inputDelay = sc.nextFloat();
-
-		if (TernaryLogic.findGate(inputName) != null) {
-			Errors.warn("Gate "+inputName+" redefined.");
-		}
-
-		sc.nextLine();
+	public Gate(String inputName, String inputType, int inputInputs, float inputDelay) {
 		name = inputName;
 		type = inputType;
 		inputs = inputInputs;
@@ -73,8 +61,6 @@ class Wire {
 	private float delay;
 	
 	// constructor
-	// INPUT FORMAT: wire source destination delay
-	// @TODO this needs to be called from within a factory method!
 	public Wire(String inputSrc, String inputDst, float inputDelay) {
 		source = inputSrc;
 		destination = inputDst;
@@ -98,31 +84,51 @@ class TernaryLogic {
 	static LinkedList <Gate> gates = new LinkedList <Gate> ();
 	static LinkedList <Wire> wires = new LinkedList <Wire> ();
 
-	// @TODO: FACTORY METHOD
+	// Factory method checks for correct inputs and calls a constructor if it passes
 	public static void wireFactory(Scanner sc, LinkedList <Gate> gates) {
 		String inputSrc = sc.next();
 		String inputDst = sc.next();
 		float inputDelay = sc.nextFloat();
 
-		if (TernaryLogic.findGate(inputSrc) == null) {
+		if (findGate(inputSrc) == null) {
 			Errors.warn("Gate "+inputSrc+" undefined.");
 		}
-		if (TernaryLogic.findGate(inputDst) == null) {
+		if (findGate(inputDst) == null) {
 			Errors.warn("Gate "+inputDst+" undefined.");
 		}
+
+		//@TODO: check for incorrect input data types
+
 		else {
 			sc.nextLine();
-			//@TODO: check for incorrect input data types
 			wires.add(new Wire(inputSrc, inputDst, inputDelay));
 		}
 	}
 
+	// Factory method checks for correct inputs and calls a constructor if it passes
+	public static void gateFactory(Scanner sc, LinkedList <Gate> gates) {
+		String inputName = sc.next();
+		String inputType = sc.next();
+		int inputInputs = sc.nextInt();
+		float inputDelay = sc.nextFloat();
+
+		if (findGate(inputName) != null) {
+			Errors.warn("Gate "+inputName+" already defined.");
+		}
+
+		//@TODO: add more conditionals to check for incorrect input data types
+
+		else {
+			sc.nextLine();
+			gates.add(new Gate(inputName, inputType, inputInputs, inputDelay));
+		}
+	}
 	
 	public static void initializeLogicGates(Scanner sc) {
 		while (sc.hasNext()) {
 			String command = sc.next();
 			if ("gate".equals(command)) {
-				gates.add(new Gate(sc, gates));
+				gateFactory(sc, gates);
 			}
 			else if ("wire".equals(command)) {
 				wireFactory(sc, gates);
