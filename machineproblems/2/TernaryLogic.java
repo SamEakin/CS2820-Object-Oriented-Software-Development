@@ -67,7 +67,6 @@ class Wire {
 		delay = inputDelay;
 	}
 
-
 	public String toString() {
 		return ("Wire "+source+" "+destination+" "+delay);
 	}
@@ -84,7 +83,8 @@ class TernaryLogic {
 	static LinkedList <Gate> gates = new LinkedList <Gate> ();
 	static LinkedList <Wire> wires = new LinkedList <Wire> ();
 
-	// Factory method checks for correct inputs and calls a constructor if it passes
+	// Factory method checks for correct inputs and calls a constructor if it passes.
+	// Takes in a scanner and the list of gates to validate.
 	public static void wireFactory(Scanner sc, LinkedList <Gate> gates) {
 		String inputSrc = sc.next();
 		String inputDst = sc.next();
@@ -110,6 +110,7 @@ class TernaryLogic {
 		}
 	}
 
+	// Helper method to validate Gate type.
 	public static boolean isValidType(String inputType) {
 		String[] validTypes = {"min","max","neg","isTrue","isFalse","isUnknown"};
 		for(String type: validTypes) {
@@ -121,6 +122,7 @@ class TernaryLogic {
 	}
 
 	// Factory method checks for correct inputs and calls a constructor if it passes
+	// Takes in a scanner and the list of gates to validate.
 	public static void gateFactory(Scanner sc, LinkedList <Gate> gates) {
 		String inputName = sc.next();
 		String inputType = sc.next();
@@ -182,6 +184,7 @@ class TernaryLogic {
 	}
 
 	public static void printGates() {
+		System.out.println("Ternary Logic Network: ");
 		for (Gate gate: gates) {
 			System.out.println(gate.toString());
 		}
