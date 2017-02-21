@@ -75,19 +75,7 @@ class Wire {
 	// constructor
 	// INPUT FORMAT: wire source destination delay
 	// @TODO this needs to be called from within a factory method!
-	public Wire(Scanner sc, LinkedList <Wire> wires) {
-		String inputSrc = sc.next();
-		String inputDst = sc.next();
-		float inputDelay = sc.nextFloat();
-
-		if (TernaryLogic.findGate(inputSrc) == null) {
-			Errors.warn("Gate "+inputSrc+" undefined.");
-		}
-		if (TernaryLogic.findGate(inputDst) == null) {
-			Errors.warn("Gate "+inputDst+" undefined.");
-		}
-
-		sc.nextLine();
+	public Wire(String inputSrc, String inputDst, float inputDelay) {
 		source = inputSrc;
 		destination = inputDst;
 		delay = inputDelay;
@@ -109,6 +97,26 @@ class TernaryLogic {
 
 	static LinkedList <Gate> gates = new LinkedList <Gate> ();
 	static LinkedList <Wire> wires = new LinkedList <Wire> ();
+
+	// @TODO: FACTORY METHOD
+	public static void wireFactory(Scanner sc, LinkedList <Gate> gates) {
+		String inputSrc = sc.next();
+		String inputDst = sc.next();
+		float inputDelay = sc.nextFloat();
+
+		if (TernaryLogic.findGate(inputSrc) == null) {
+			Errors.warn("Gate "+inputSrc+" undefined.");
+		}
+		if (TernaryLogic.findGate(inputDst) == null) {
+			Errors.warn("Gate "+inputDst+" undefined.");
+		}
+		else {
+			sc.nextLine();
+			//@TODO: check for incorrect input data types
+			wires.add(new Wire(inputSrc, inputDst, inputDelay));
+		}
+	}
+
 	
 	public static void initializeLogicGates(Scanner sc) {
 		while (sc.hasNext()) {
@@ -117,7 +125,7 @@ class TernaryLogic {
 				gates.add(new Gate(sc, gates));
 			}
 			else if ("wire".equals(command)) {
-				wires.add(new Wire(sc, wires));
+				wireFactory(sc, gates);
 			}
 			else if ("--".equals(command)) { // comment
 				sc.nextLine(); // skip the whole line
