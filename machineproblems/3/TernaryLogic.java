@@ -146,10 +146,10 @@ class TernaryLogic {
 		while (sc.hasNext()) {
 			String command = sc.next();
 			if ("gate".equals(command)) {
-				gateFactory(sc, gates);
+				gateFactory(sc);
 			}
 			else if ("wire".equals(command)) {
-				wireFactory(sc, gates);
+				wireFactory(sc);
 			}
 			else if ("--".equals(command)) { // comment
 				sc.nextLine(); // skip the whole line
@@ -163,7 +163,7 @@ class TernaryLogic {
 
 	// Factory method checks for correct inputs and calls a constructor if it passes.
 	// Takes in a scanner and the list of gates to validate.
-	public static void wireFactory(Scanner sc, LinkedList <Gate> gates) {
+	public static void wireFactory(Scanner sc) {
 		String inputSrc = sc.next();
 		String inputDst = sc.next();
 
@@ -190,7 +190,7 @@ class TernaryLogic {
 
 	// Factory method checks for correct inputs and calls a constructor if it passes
 	// Takes in a scanner and the list of gates to validate.
-	public static void gateFactory(Scanner sc, LinkedList <Gate> gates) {
+	public static void gateFactory(Scanner sc) {
 		String[] validTypes = {"min","max","neg","isTrue","isFalse","isUnknown"};
 		String inputName = sc.next();
 		String gateType = sc.next();
@@ -210,17 +210,16 @@ class TernaryLogic {
 			for(int i = 0; i < 3; i++){
 				if (validTypes[i].equals(gateType)){
 					//@TODO: check for int/float  
-					readIntAndFloat(sc, gates, inputName, gateType);
+					readIntAndFloat(sc, inputName, gateType);
 				}
 			}
 			for(int i = 3; i < 6; i++){
 				if (validTypes[i].equals(gateType)){
 					//@TODO: check for float  
-					readFloat(sc, gates, inputName, gateType);
+					readFloat(sc, inputName, gateType);
 				}
 			}
 		}
-
 	}
 
 	// Helper method to validate Gate type.
@@ -243,7 +242,7 @@ class TernaryLogic {
 		return null;
 	}
 
-	protected static void readIntAndFloat(Scanner sc, LinkedList <Gate> gates, String inputName, String gateType){
+	protected static void readIntAndFloat(Scanner sc, String inputName, String gateType){
 		if (!isValidInputs(sc, inputName, gateType)){
 			return;
 		}
@@ -267,7 +266,7 @@ class TernaryLogic {
 		}
 	}
 	
-	protected static void readFloat(Scanner sc, LinkedList <Gate> gates, String inputName, String gateType){
+	protected static void readFloat(Scanner sc, String inputName, String gateType){
 		if (!isValidDelay(sc, inputName, gateType)){
 			return;
 		}
