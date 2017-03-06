@@ -1,0 +1,26 @@
+-- TESTING CORRECT INPUTS
+gate A min 4 1.0
+gate B max 2 0.5
+gate C neg 2 0.5
+wire A B 0.1
+wire B A 0.3
+wire A C 0.1
+wire C B 0.1
+-- TESTING INCORRECT INPUTS
+-- missing destination 
+wire A 0.1
+-- src/dst gate doesn't exist - works
+wire A X 0.1
+wire A B as
+-- MESSES UP SCANNER POSITION
+gate D neg 0.1
+-- incorrect command - works
+stupid A ay 1 2.0
+-- duplicate - works
+gate C neg 3 0.5
+gate E poop 4 0.9
+gate J isTrue 0.7
+gate K isFalse 0.8
+gate L isUnknown 0.9
+gate M isUnknown 2 0.9
+

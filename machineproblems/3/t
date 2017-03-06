@@ -1,0 +1,6 @@
+gate A min 2 0.1
+gate B max 2 0.1
+gate C neg 2 0.1
+gate D isTrue 0.1
+gate E isFalse 0.1
+gate F isUnknown 0.1
