@@ -1,5 +1,5 @@
 /** TernaryLogic.java -- Machine Problem 2
- *  @author Samuel Eakin
+ *  @author Samuel Eakin -- Section b04
  *  @version 2017-02-20
  */
 import java.util.LinkedList;
@@ -242,6 +242,7 @@ class TernaryLogic {
 		return null;
 	}
 
+	// Reads in a float and constructs the appropriate gate.
 	protected static void readIntAndFloat(Scanner sc, String inputName, String gateType){
 		if (!isValidInputs(sc, inputName, gateType)){
 			return;
@@ -266,6 +267,7 @@ class TernaryLogic {
 		}
 	}
 	
+	// Reads in a float and constructs the appropriate gate.
 	protected static void readFloat(Scanner sc, String inputName, String gateType){
 		if (!isValidDelay(sc, inputName, gateType)){
 			return;
@@ -286,6 +288,7 @@ class TernaryLogic {
 		}
 	}
 
+	// Validates the next integer to be read in.
 	protected static boolean isValidInputs(Scanner sc, String inputName, String gateType){
 		if (!sc.hasNextInt()) {
 			Errors.warn("Gate "+inputName+" "+gateType+" inputs expected.");
@@ -296,6 +299,7 @@ class TernaryLogic {
 			return true;
 	}
 
+	// Validates the next float to be read in.
 	protected static boolean isValidDelay(Scanner sc, String inputName, String gateType){
 		if (!sc.hasNextFloat()) {
 			Errors.warn("Gate "+inputName+" "+gateType+" delay expected.");
